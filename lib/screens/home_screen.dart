@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/category_model.dart';
 import '../service/api_service.dart';
 import '../widgets/category_grid.dart';
+import '../screens/meal_detail_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<Category> _categories;               // full list from API
+  late List<Category> _categories;             // full list from API
   List<Category> _filteredCategories = [];     // list shown in the grid
   bool _isLoading = true;
   final ApiService _api_service = ApiService();
@@ -38,6 +39,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        actions: [
+          TextButton.icon(
+            onPressed: _openRandomRecipe,
+            icon: const Icon(Icons.shuffle, color: Colors.brown),
+            label: const Text(
+              'Choose random recipe',
+              style: TextStyle(color: Colors.brown),
+            ),
+          )
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -70,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadDishList() async {
-
     final categoryList = await _api_service.loadCategoryList();
 
     setState(() {
@@ -93,5 +103,38 @@ class _MyHomePageState extends State<MyHomePage> {
             .toList();
       }
     });
+  }
+
+  // RANDOM RECIPE HANDLER
+  Future<void> _openRandomRecipe() async {
+    // Small loading dialog while fetching
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator()),
+    );
+
+    final id = await _api_service.getRandomMealId();
+
+    if (mounted) {
+      Navigator.of(context).pop(); // close the dialog
+    }
+
+    if (id == null) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not load random recipe')),
+      );
+      return;
+    }
+
+    if (!mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MealDetailScreen(idMeal: id),
+      ),
+    );
   }
 }

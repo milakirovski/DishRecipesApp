@@ -90,4 +90,23 @@ class ApiService {
       return null;
     }
   }
+
+  Future<String?> getRandomMealId() async {
+    final response = await http.get(
+      Uri.parse('https://www.themealdb.com/api/json/v1/1/random.php'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final List<dynamic>? meals = data['meals'];
+
+      if (meals == null || meals.isEmpty) return null;
+
+      final meal = meals[0] as Map<String, dynamic>;
+      return meal['idMeal'] as String;
+    } else {
+      print('Failed to load random meal: ${response.statusCode}');
+      return null;
+    }
+  }
 }
