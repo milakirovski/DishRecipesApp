@@ -1,16 +1,17 @@
+import 'package:dish_recipes_app/screens/meals_by_category_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/category_model.dart';
 
-class DishCard extends StatelessWidget {
+class CategoryCard extends StatelessWidget {
   final Category category;
 
-  const DishCard({super.key, required this.category});
+  const CategoryCard({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/details", arguments: category);
+       Navigator.push(context, MaterialPageRoute(builder: (_) => MealsByCategoryScreen(category: category.strCategory)));
       },
       child: Card(
         shape: RoundedRectangleBorder(

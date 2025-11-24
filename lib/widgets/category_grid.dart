@@ -25,7 +25,7 @@ class _CategoryGridState extends State<CategoryGrid> {
       itemCount: widget.categories.length,
       physics: BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        return DishCard(category: widget.categories[index]);
+        return CategoryCard(category: widget.categories[index]);
       },
     );
   }

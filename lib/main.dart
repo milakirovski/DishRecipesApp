@@ -1,4 +1,4 @@
-import 'package:dish_recipes_app/screens/home.dart';
+import 'package:dish_recipes_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,13 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dish Recipes App',
+      title: 'Dish Recipes App - 223182',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
       ),
       initialRoute: "/",
       routes: {
-        "/": (context) => const MyHomePage(title: 'Dish Recipes App'),
+        "/": (context) => const MyHomePage(title: 'Dish Recipes App - 223182'),
         // "/details": (context) => const DetailsPage(),
       },
     );
