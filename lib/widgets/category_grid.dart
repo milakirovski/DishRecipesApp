@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import '../models/dish_model.dart';
-import 'dish_card.dart';
+import '../models/category_model.dart';
+import 'category_card.dart';
 
 
-class DishGrid extends StatefulWidget {
-  final List<Dish> dishes;
+class CategoryGrid extends StatefulWidget {
+  final List<Category> categories;
 
-  const DishGrid({super.key, required this.dishes});
+  const CategoryGrid({super.key, required this.categories});
 
   @override
-  State<StatefulWidget> createState() => _DishGridState();
+  State<StatefulWidget> createState() => _CategoryGridState();
 }
 
-class _DishGridState extends State<DishGrid> {
+class _CategoryGridState extends State<CategoryGrid> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -22,10 +22,10 @@ class _DishGridState extends State<DishGrid> {
           crossAxisSpacing: 4,
           childAspectRatio: 200/244
       ),
-      itemCount: widget.dishes.length,
+      itemCount: widget.categories.length,
       physics: BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        return DishCard(dish: widget.dishes[index]);
+        return DishCard(category: widget.categories[index]);
       },
     );
   }

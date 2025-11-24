@@ -1,17 +1,17 @@
-class Dish {
+class Category {
   String idCategory;
   String strCategory;
   String strCategoryThumb;
   String strCategoryDescription;
 
-  Dish({
+  Category({
     required this.idCategory,
     required this.strCategory,
     required this.strCategoryThumb,
     required this.strCategoryDescription
   });
 
-  Dish.fromJson(Map<String, dynamic> data)
+  Category.fromJson(Map<String, dynamic> data)
       : idCategory = data['idCategory'],
         strCategory = data['strCategory'],
         strCategoryThumb = data['strCategoryThumb'],

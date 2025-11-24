@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../models/dish_model.dart';
-import '../widgets/dish_grid.dart';
+import '../models/category_model.dart';
+import '../widgets/category_grid.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -15,8 +15,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<Dish> _dish;               // full list from API
-  List<Dish> _filteredDishes = [];     // list shown in the grid
+  late List<Category> _categories;               // full list from API
+  List<Category> _filteredCategories = [];     // list shown in the grid
   bool _isLoading = true;
 
   final TextEditingController _searchController = TextEditingController();
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // GRID WITH FILTERED DATA
             Expanded(
-              child: DishGrid(dishes: _filteredDishes),
+              child: CategoryGrid(categories: _filteredCategories),
             ),
           ],
         ),
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadDishList({required int n}) async {
-    List<Dish> dishList = [];
+    List<Category> dishList = [];
 
     final detailResponse = await http.get(
       Uri.parse('https://www.themealdb.com/api/json/v1/1/categories.php'),
@@ -82,15 +82,15 @@ class _MyHomePageState extends State<MyHomePage> {
       final List<dynamic> categoriesJson = detailData['categories'];
 
       for (final categoryMap in categoriesJson) {
-        dishList.add(Dish.fromJson(categoryMap as Map<String, dynamic>));
+        dishList.add(Category.fromJson(categoryMap as Map<String, dynamic>));
       }
     } else {
       print('Failed to load data: ${detailResponse.statusCode}');
     }
 
     setState(() {
-      _dish = dishList;
-      _filteredDishes = dishList; // initially show all
+      _categories = dishList;
+      _filteredCategories = dishList; // initially show all
       _isLoading = false;
     });
   }
@@ -101,9 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() {
       if (lowerQuery.isEmpty) {
-        _filteredDishes = _dish;
+        _filteredCategories = _categories;
       } else {
-        _filteredDishes = _dish
+        _filteredCategories = _categories
             .where((d) => d.strCategory.toLowerCase().contains(lowerQuery))
             .toList();
       }

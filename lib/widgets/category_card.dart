@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../models/dish_model.dart';
+import '../models/category_model.dart';
 
 class DishCard extends StatelessWidget {
-  final Dish dish;
+  final Category category;
 
-  const DishCard({super.key, required this.dish});
+  const DishCard({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/details", arguments: dish);
+        Navigator.pushNamed(context, "/details", arguments: category);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -28,7 +28,7 @@ class DishCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
-                    dish.strCategoryThumb,
+                    category.strCategoryThumb,
                     height: 110,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -39,7 +39,7 @@ class DishCard extends StatelessWidget {
 
                 // TITLE
                 Text(
-                  dish.strCategory,
+                  category.strCategory,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class DishCard extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Text(
-                      dish.strCategoryDescription,
+                      category.strCategoryDescription,
                       style: const TextStyle(fontSize: 12),
                     ),
                   ),
