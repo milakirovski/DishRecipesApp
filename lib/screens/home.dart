@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import '../models/category_model.dart';
+import '../service/api_service.dart';
 import '../widgets/category_grid.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,13 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
   late List<Category> _categories;               // full list from API
   List<Category> _filteredCategories = [];     // list shown in the grid
   bool _isLoading = true;
+  final ApiService _api_service = ApiService();
 
   final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _loadDishList(n: 20);
+    _loadDishList();
   }
 
   @override
@@ -70,27 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _loadDishList({required int n}) async {
-    List<Category> dishList = [];
+  void _loadDishList() async {
 
-    final detailResponse = await http.get(
-      Uri.parse('https://www.themealdb.com/api/json/v1/1/categories.php'),
-    );
-
-    if (detailResponse.statusCode == 200) {
-      final detailData = json.decode(detailResponse.body);
-      final List<dynamic> categoriesJson = detailData['categories'];
-
-      for (final categoryMap in categoriesJson) {
-        dishList.add(Category.fromJson(categoryMap as Map<String, dynamic>));
-      }
-    } else {
-      print('Failed to load data: ${detailResponse.statusCode}');
-    }
+    final categoryList = await _api_service.loadCategoryList();
 
     setState(() {
-      _categories = dishList;
-      _filteredCategories = dishList; // initially show all
+      _categories = categoryList;
+      _filteredCategories = categoryList; // initially show all
       _isLoading = false;
     });
   }
