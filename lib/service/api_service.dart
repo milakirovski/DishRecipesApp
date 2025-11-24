@@ -4,6 +4,8 @@ import 'dart:convert';
 
 import 'package:dish_recipes_app/models/category_model.dart';
 
+import '../models/meal_detail_model.dart';
+
 class ApiService {
 
   Future<List<Category>> loadCategoryList() async {
@@ -66,6 +68,26 @@ class ApiService {
     } else {
       print('Failed to search meals: ${response.statusCode}');
       return [];
+    }
+  }
+
+  Future<MealDetail?> loadMealDetail(String idMeal) async{
+    final response = await http.get(
+      Uri.parse('https://www.themealdb.com/api/json/v1/1/lookup.php?i=$idMeal'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final List<dynamic>? meals = data['meals'];
+
+      if (meals == null || meals.isEmpty) {
+        return null;
+      }
+
+      return MealDetail.fromJson(meals[0] as Map<String, dynamic>);
+    } else {
+      print('Failed to load meal detail: ${response.statusCode}');
+      return null;
     }
   }
 }

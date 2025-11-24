@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const MyHomePage(title: 'Dish Recipes App - 223182'),
-        // "/details": (context) => const DetailsPage(),
       },
     );
   }

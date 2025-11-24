@@ -1,3 +1,4 @@
+import 'package:dish_recipes_app/screens/meal_detail_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../service/api_service.dart';
@@ -119,8 +120,8 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
 
                   return GestureDetector(
                     onTap: () {
-                      // if you have a meal details screen:
-                      // Navigator.pushNamed(context, '/mealDetails', arguments: meal);
+                     Navigator.push(context,
+                     MaterialPageRoute(builder: (_) => MealDetailScreen(idMeal: meal.idMeal)));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
