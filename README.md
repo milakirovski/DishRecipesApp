@@ -12,6 +12,10 @@ A dish recipes app.
 
 ![img_1.png](img_1.png)
 
+![img_2.png](img_2.png)
+
+![img_3.png](img_3.png)
+
 ## Screencasts 
 
 https://youtube.com/shorts/0c8zCeDZpC4
