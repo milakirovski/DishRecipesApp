@@ -2,15 +2,21 @@
 
 A dish recipes app.
 
-## Getting Started
+## Screen shots of the app
 
-This project is a starting point for a Flutter application.
+![img.png](docs/img.png)
 
-A few resources to get you started if this is your first Flutter project:
+![img_1.png](docs/img_1.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![img.png](img.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![img_1.png](img_1.png)
+
+## Screencasts 
+
+[Screencast from 2025-11-25 00-57-03.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2000-57-03.webm)
+
+[Screencast from 2025-11-25 00-59-00.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2000-59-00.webm)
+
+[Screencast from 2025-11-25 01-03-40.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2001-03-40.webm)
+
