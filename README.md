@@ -14,9 +14,8 @@ A dish recipes app.
 
 ## Screencasts 
 
-[Screencast from 2025-11-25 00-57-03.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2000-57-03.webm)
+[Screencast from 2025-11-25 00-57-03.webm](docs/Screencast%20from%202025-11-25%2000-57-03.webm)
 
-[Screencast from 2025-11-25 00-59-00.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2000-59-00.webm)
+[Screencast from 2025-11-25 00-59-00.webm](docs/Screencast%20from%202025-11-25%2000-59-00.webm)
 
-[Screencast from 2025-11-25 01-03-40.webm](../../../../../../Videos/Screencasts/mis_lab2/Screencast%20from%202025-11-25%2001-03-40.webm)
-
+[Screencast from 2025-11-25 01-03-40.webm](docs/Screencast%20from%202025-11-25%2001-03-40.webm)
