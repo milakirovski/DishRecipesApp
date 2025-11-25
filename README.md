@@ -14,8 +14,8 @@ A dish recipes app.
 
 ## Screencasts 
 
-[Screencast from 2025-11-25 00-57-03.webm](docs/Screencast%20from%202025-11-25%2000-57-03.webm)
+https://youtube.com/shorts/0c8zCeDZpC4
 
-[Screencast from 2025-11-25 00-59-00.webm](docs/Screencast%20from%202025-11-25%2000-59-00.webm)
+https://youtube.com/shorts/Ef24kUcKB6E
 
-[Screencast from 2025-11-25 01-03-40.webm](docs/Screencast%20from%202025-11-25%2001-03-40.webm)
+https://youtube.com/shorts/8CaeMWEf6zY
