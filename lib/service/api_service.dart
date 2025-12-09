@@ -109,4 +109,24 @@ class ApiService {
       return null;
     }
   }
+
+  Future<Meal?> loadMealById(String idMeal) async {
+    final response = await http.get(
+      Uri.parse('https://www.themealdb.com/api/json/v1/1/lookup.php?i=$idMeal'),
+    );
+
+    if(response.statusCode == 200){
+      final data = json.decode(response.body);
+      final List<dynamic>? mealsJson = data['meals'];
+
+      if (mealsJson == null || mealsJson.isEmpty) {
+        return null;
+      }
+
+      return Meal.fromJson(mealsJson[0] as Map<String, dynamic>);
+    }else{
+      print('Failed to load meals by id: ${response.statusCode}');
+      return null;
+    }
+  }
 }

@@ -5,10 +5,14 @@ import 'meal_card.dart';
 class MealGrid extends StatelessWidget {
   const MealGrid({
     super.key,
-    required this.meals
+    required this.meals,
+    required this.favoriteMealIds,
+    required this.onToggleFavorite,
   });
 
   final List<Meal> meals;
+  final Set<String> favoriteMealIds;
+  final void Function(String mealId) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +32,12 @@ class MealGrid extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         final meal = meals[index];
+        final isFavorite = favoriteMealIds.contains(meal.idMeal);
 
         return MealCard(
           meal: meal,
+          isFavorite: isFavorite,
+          onToggleFavorite: onToggleFavorite,
         );
       },
     );

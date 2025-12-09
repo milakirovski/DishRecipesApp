@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../service/api_service.dart';
-import '../widgets/meal_grid.dart';
-
+import '../screens/favorite_meals_screen.dart';
+import '../widgets/favorites_manager.dart';
+import '../widgets/meal_grid.dart'; // Assuming you create this screen
 
 class MealsByCategoryScreen extends StatefulWidget {
   final String category;
@@ -19,8 +20,8 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
   bool _isLoading = true;
   bool _isSearching = false;
 
-  late List<Meal> _allMeals;      // from filter.php?c=
-  List<Meal> _visibleMeals = [];  // shown in grid
+  late List<Meal> _allMeals;
+  List<Meal> _visibleMeals = [];
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -28,13 +29,19 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
   void initState() {
     super.initState();
     _loadMealsForCategory();
+    // Listen to changes in the global favorites state to refresh the heart icons
+    favoritesManager.addListener(_refreshState);
   }
 
   @override
   void dispose() {
+    favoritesManager.removeListener(_refreshState);
     _searchController.dispose();
     super.dispose();
   }
+
+  // Forces a rebuild of the widget when the favorites list changes
+  void _refreshState() => setState(() {});
 
   Future<void> _loadMealsForCategory() async {
     final meals = await _apiService.loadMealsByCategory(widget.category);
@@ -50,7 +57,6 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
     final q = query.trim();
 
     if (q.isEmpty) {
-      //  to original list from category
       setState(() {
         _visibleMeals = _allMeals;
       });
@@ -80,6 +86,18 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category),
+        actions: [
+          // Button to navigate to the favorite meals screen
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const FavoriteMealsScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -104,9 +122,13 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
             if (_isSearching) const LinearProgressIndicator(),
 
             const SizedBox(height: 8),
+
+            // grid with meals
             Expanded(
               child: MealGrid(
-                meals: _visibleMeals
+                meals: _visibleMeals,
+                favoriteMealIds: favoritesManager.favoriteMealIds,
+                onToggleFavorite: favoritesManager.toggleFavorite,
               ),
             ),
           ],

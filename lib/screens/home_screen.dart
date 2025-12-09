@@ -3,6 +3,7 @@ import '../models/category_model.dart';
 import '../service/api_service.dart';
 import '../widgets/category_grid.dart';
 import '../screens/meal_detail_screen.dart';
+import 'favorite_meals_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -33,6 +34,16 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  // navigation to fave meals screen
+  void _openFavoriteMealsScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FavoriteMealsScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +51,17 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
         actions: [
+          TextButton.icon(
+            onPressed: _openFavoriteMealsScreen,
+            icon: const Icon(
+              Icons.favorite,
+              color: Colors.black26,
+            ),
+            label: const Text(
+              'Favorites',
+              style: TextStyle(color: Colors.black54),
+            ),
+          ),
           TextButton.icon(
             onPressed: _openRandomRecipe,
             icon: const Icon(Icons.shuffle, color: Colors.brown),
