@@ -1,7 +1,8 @@
-import 'package:dish_recipes_app/screens/meal_detail_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../service/api_service.dart';
+import '../widgets/meal_grid.dart';
+
 
 class MealsByCategoryScreen extends StatefulWidget {
   final String category;
@@ -86,7 +87,7 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
         padding: const EdgeInsets.all(12),
         child: Column(
           children: [
-            //search bar
+            // search bar
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
@@ -103,64 +104,9 @@ class _MealsByCategoryScreenState extends State<MealsByCategoryScreen> {
             if (_isSearching) const LinearProgressIndicator(),
 
             const SizedBox(height: 8),
-
-            // grid with meals
             Expanded(
-              child: GridView.builder(
-                itemCount: _visibleMeals.length,
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 0.8,
-                ),
-                itemBuilder: (context, index) {
-                  final meal = _visibleMeals[index];
-
-                  return GestureDetector(
-                    onTap: () {
-                     Navigator.push(context,
-                     MaterialPageRoute(builder: (_) => MealDetailScreen(idMeal: meal.idMeal)));
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: const BorderSide(
-                          color: Colors.lightGreen,
-                          width: 2,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(10),
-                              ),
-                              child: Image.network(
-                                meal.strMealThumb,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              meal.strMeal,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+              child: MealGrid(
+                meals: _visibleMeals
               ),
             ),
           ],
