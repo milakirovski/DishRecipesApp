@@ -1,1 +1,43 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"dish-recipes-project","appId":"1:330325716500:android:43a0e797fbecd96cb40101","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"dish-recipes-project","configurations":{"android":"1:330325716500:android:43a0e797fbecd96cb40101","ios":"1:330325716500:ios:52a51f8df72a75a4b40101","macos":"1:330325716500:ios:52a51f8df72a75a4b40101","web":"1:330325716500:web:cb72950fdd9fbb96b40101","windows":"1:330325716500:web:db7f713c54b1ad88b40101"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "dish-recipes-project",
+          "appId": "1:330325716500:android:43a0e797fbecd96cb40101",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "dish-recipes-project",
+          "configurations": {
+            "android": "1:330325716500:android:43a0e797fbecd96cb40101",
+            "ios": "1:330325716500:ios:52a51f8df72a75a4b40101",
+            "macos": "1:330325716500:ios:52a51f8df72a75a4b40101",
+            "web": "1:330325716500:web:cb72950fdd9fbb96b40101",
+            "windows": "1:330325716500:web:db7f713c54b1ad88b40101"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ]
+}

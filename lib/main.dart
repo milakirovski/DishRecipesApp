@@ -1,21 +1,28 @@
 import 'package:dish_recipes_app/screens/home_screen.dart';
 import 'package:dish_recipes_app/screens/meals_by_category_screen.dart';
 import 'package:dish_recipes_app/screens/meal_detail_screen.dart';
+import 'package:dish_recipes_app/service/firebase_api.dart';
 import 'package:flutter/material.dart';
 
 // import of the  Firebase core plugin and the configuration file
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-// initialize Firebase
-Future<void> main() async{
+
+// // initialize Firebase
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize Firebase Core
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseApi().initNotifications();
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
