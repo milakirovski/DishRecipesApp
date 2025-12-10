@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "330325716500",
+    "project_id": "dish-recipes-project",
+    "storage_bucket": "dish-recipes-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330325716500:android:43a0e797fbecd96cb40101",
+        "android_client_info": {
+          "package_name": "com.example.dish_recipes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAetXQP-f2E5KH5IFPEUS3ryLqZSsZoDN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

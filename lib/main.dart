@@ -3,7 +3,17 @@ import 'package:dish_recipes_app/screens/meals_by_category_screen.dart';
 import 'package:dish_recipes_app/screens/meal_detail_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+// import of the  Firebase core plugin and the configuration file
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+// initialize Firebase
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
