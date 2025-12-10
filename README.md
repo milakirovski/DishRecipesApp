@@ -28,6 +28,8 @@ A dish recipes app.
 
 ![img_5.png](docs/img_5.png)
 
+![img_4.png](img_4.png)
+
 ## Screencasts 
 
 ### Lab 2 screencast
@@ -37,8 +39,6 @@ https://youtube.com/shorts/0c8zCeDZpC4
 https://youtube.com/shorts/Ef24kUcKB6E
 
 https://youtube.com/shorts/8CaeMWEf6zY
-
-![img_4.png](img_4.png)
 
 ### Lab 3 screencast
 
