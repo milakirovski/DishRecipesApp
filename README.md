@@ -38,6 +38,8 @@ https://youtube.com/shorts/Ef24kUcKB6E
 
 https://youtube.com/shorts/8CaeMWEf6zY
 
+![img_4.png](img_4.png)
+
 ### Lab 3 screencast
 
 **Notifications:**
